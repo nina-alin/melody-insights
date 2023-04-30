@@ -1,0 +1,36 @@
+/dashboard:
+
+Profil utilisateur: https://api.spotify.com/v1/me
+Genres musicaux préférés: Utilisez l'historique d'écoute et les top artistes pour déterminer les genres préférés.
+Historique d'écoute: https://api.spotify.com/v1/me/player/recently-played
+Top artistes: https://api.spotify.com/v1/me/top/artists
+Artistes préférés: https://api.spotify.com/v1/me/top/artists
+Chansons du moment: https://api.spotify.com/v1/me/top/tracks
+/songs/{name}:
+Détails de la chanson: https://api.spotify.com/v1/tracks/{id}
+Recommandations de chansons similaires: https://api.spotify.com/v1/recommendations?seed_tracks={id}
+
+/artist/{name}:
+Détails de l'artiste: https://api.spotify.com/v1/artists/{id}
+Description de l'artiste: http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=YOUR_API_KEY&artist=ARTIST_NAME&format=json
+Albums de l'artiste: https://api.spotify.com/v1/artists/{id}/albums
+Chansons les plus populaires: https://api.spotify.com/v1/artists/{id}/top-tracks?country=YOUR_COUNTRY_CODE
+Artistes similaires: http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&api_key=YOUR_API_KEY&artist=ARTIST_NAME&format=json
+
+/genre/{name}:
+Description du genre: http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&api_key=YOUR_API_KEY&tag=TAG_NAME&format=json
+Artistes appartenant au genre: http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&api_key=YOUR_API_KEY&tag=TAG_NAME&format=json
+Chansons appartenant au genre: http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&api_key=YOUR_API_KEY&tag=TAG_NAME&format=json
+Genres similaires: http://ws.audioscrobbler.com/2.0/?method=tag.getsimilar&api_key=YOUR_API_KEY&tag=TAG_NAME&format=json
+
+/album/{name}:
+Détails de l'album: https://api.spotify.com/v1/albums/{id}
+Description de l'album: http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=YOUR_API_KEY&artist=ARTIST_NAME&album=ALBUM_NAME&format=json
+Artistes ayant travaillé sur l'album: Utilisez les informations de l'endpoint des détails de l'album (Spotify).
+
+/album/{name} (suite):
+Genres musicaux associés à l'album: Utilisez les informations de l'endpoint de description de l'album (Last.fm).
+Suggestions d'albums similaires: http://ws.audioscrobbler.com/2.0/?method=album.getsimilar&api_key=YOUR_API_KEY&artist=ARTIST_NAME&album=ALBUM_NAME&format=json
+/user:
+
+Description du profil de l'utilisateur: https://api.spotify.com/v1/me
