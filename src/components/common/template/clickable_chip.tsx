@@ -9,7 +9,7 @@ const ClickableChip = ({ label, onClick }: ClickableChipProps) => {
   return (
     <Badge
       className={
-        "cursor-pointer rounded-3xl bg-green-500 text-white hover:text-gray-950"
+        "hover:text-gray-950 cursor-pointer rounded-3xl bg-spotify-primary text-white"
       }
       onClick={onClick}
     >

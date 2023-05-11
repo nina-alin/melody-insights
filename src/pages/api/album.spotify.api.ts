@@ -15,7 +15,7 @@ export const albumSpotifyApi = createApi({
   }),
   tagTypes: ["Album"],
   endpoints: (builder) => ({
-    getAlbum: builder.query({
+    getAlbum: builder.query<SpotifyApi.SingleAlbumResponse, string>({
       query: (id) => ({
         url: `/albums/${id}`,
         method: "GET",

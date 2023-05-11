@@ -1,4 +1,3 @@
-import { SessionWithAccessToken } from "../../../interface/session/session-with-access-token";
 import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import type { NextAuthOptions } from "next-auth";
@@ -27,13 +26,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({
-      session,
-      token,
-    }: {
-      session: SessionWithAccessToken;
-      token: JWT;
-    }) {
+    async session({ session, token }: { session: any; token: JWT }) {
       // Send properties to the client, like an access_token and user id from a provider.
       session.accessToken = token.accessToken;
 

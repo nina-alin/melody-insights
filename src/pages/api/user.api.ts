@@ -1,7 +1,3 @@
-import {
-  GetUserTopItems,
-  GetUserTopItemsParams,
-} from "./../../interface/user/user";
 import { SessionWithAccessToken } from "@/interface/session-with-access-token";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getSession } from "next-auth/react";
@@ -28,7 +24,10 @@ export const userApi = createApi({
       }),
       providesTags: () => ["User"],
     }),
-    getUserTop: builder.query<GetUserTopItems, GetUserTopItemsParams>({
+    getUserTop: builder.query<
+      SpotifyApi.UsersTopTracksResponse | SpotifyApi.UsersTopArtistsResponse,
+      { type: string; time_range: string; limit: number; offset: number }
+    >({
       query: ({ type, time_range, limit, offset }) => ({
         url: `me/top/${type}`,
         method: "GET",
@@ -41,8 +40,11 @@ export const userApi = createApi({
       }),
       providesTags: () => ["User"],
     }),
-    getRecentlyPlayed: builder.query<any, void>({
-      query: (limit) => ({
+    getRecentlyPlayed: builder.query<
+      SpotifyApi.UsersRecentlyPlayedTracksResponse,
+      SpotifyApi.RecentlyPlayedParameterObject
+    >({
+      query: ({ limit }) => ({
         url: `/me/player/recently-played`,
         method: "GET",
         credentials: "same-origin",

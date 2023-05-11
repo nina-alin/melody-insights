@@ -9,7 +9,7 @@ const GreenButton = ({ onClick, label, selected }: GreenButtonProps) => (
     onClick={onClick}
     className={`rounded-full border ${
       selected ? "text-gray-800" : "text-white"
-    } border-green-500 bg-green-500 px-4 py-2 font-semibold shadow hover:text-gray-800`}
+    } border-green-500 bg-spotify-primary px-4 py-2 font-semibold shadow hover:text-gray-800`}
   >
     {label}
   </button>

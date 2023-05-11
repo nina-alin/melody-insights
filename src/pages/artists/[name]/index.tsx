@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useGetArtistDescriptionQuery } from "../../api/artist.lastfm.api";
+import Loading from "@/components/common/states/loading";
+import Error from "@/components/common/states/error";
 
 const ArtistDetails: NextPage = () => {
   const router = useRouter();
@@ -10,6 +12,14 @@ const ArtistDetails: NextPage = () => {
     isLoading,
     isError,
   } = useGetArtistDescriptionQuery(name as string);
+
+  if (isError) {
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>

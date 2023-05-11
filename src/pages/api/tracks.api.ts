@@ -15,7 +15,7 @@ export const tracksApi = createApi({
   }),
   tagTypes: ["Track"],
   endpoints: (builder) => ({
-    getTrack: builder.query({
+    getTrack: builder.query<SpotifyApi.SingleTrackResponse, string>({
       query: (id) => ({
         url: `/tracks/${id}`,
         method: "GET",

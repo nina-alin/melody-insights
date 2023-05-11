@@ -1,6 +1,9 @@
 import Image from "next/image";
 
-const ArtistCol = ({ artist }) => (
+interface ArtistColProps {
+  artist: SpotifyApi.ArtistObjectFull;
+}
+const ArtistCol = ({ artist }: ArtistColProps) => (
   <div className="flex h-12 items-center justify-between">
     <div className="flex items-center gap-2">
       <Image

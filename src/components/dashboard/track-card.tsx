@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const TrackCard = ({ track }) => (
+interface TrackCardProps {
+  track: SpotifyApi.TrackObjectFull;
+}
+
+const TrackCard = ({ track }: TrackCardProps) => (
   <Link
     href={`/songs/${track.name}?artist=${track.artists[0].name}&id=${track.id}`}
-    className="flex h-64 w-40 flex-col gap-4 overflow-hidden rounded-xl shadow-md duration-200 hover:scale-105 hover:cursor-pointer hover:shadow-xl"
+    className="flex h-64 w-40 flex-col gap-4 overflow-hidden rounded-xl p-2 shadow-md duration-200 hover:scale-105 hover:cursor-pointer hover:bg-gray-900 hover:shadow-xl"
   >
     <Image
       src={track.album.images[0].url}

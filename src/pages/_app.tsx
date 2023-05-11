@@ -1,4 +1,4 @@
-import { SessionProvider, getSession } from "next-auth/react";
+import { SessionProvider, getSession, GetSessionParams } from "next-auth/react";
 import "./globals.css";
 
 import type { AppProps } from "next/app";
@@ -25,7 +25,7 @@ export default function App({
         <div className={nunito.className}>
           <div className="flex min-h-full flex-col">
             <RootLayout>
-              <main className="top-20 flex-1 bg-stone-900 text-white">
+              <main className="top-20 flex-1 bg-spotify-background text-white">
                 <Component {...pageProps} />
               </main>
             </RootLayout>
@@ -36,7 +36,11 @@ export default function App({
   );
 }
 
-App.getInitialProps = async ({ ctx }) => {
+App.getInitialProps = async ({
+  ctx,
+}: {
+  ctx: GetSessionParams | undefined;
+}) => {
   const session = await getSession(ctx);
   return { session };
 };

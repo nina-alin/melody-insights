@@ -10,6 +10,12 @@ module.exports = {
     fontFamily: {
       sans: ["Nunito", "sans-serif"],
     },
+    colors: {
+      spotify: {
+        background: "#121212",
+        primary: "#1ed760",
+      },
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

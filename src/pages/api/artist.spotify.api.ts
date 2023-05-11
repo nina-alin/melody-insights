@@ -15,7 +15,7 @@ export const artistSpotifyApi = createApi({
   }),
   tagTypes: ["Artist"],
   endpoints: (builder) => ({
-    getArtist: builder.query({
+    getArtist: builder.query<SpotifyApi.SingleArtistResponse, string>({
       query: (id) => ({
         url: `/artists/${id}`,
         method: "GET",
@@ -23,7 +23,7 @@ export const artistSpotifyApi = createApi({
       }),
       providesTags: () => ["Artist"],
     }),
-    getArtistAlbums: builder.query({
+    getArtistAlbums: builder.query<SpotifyApi.ArtistsAlbumsResponse, string>({
       query: (id) => ({
         url: `/artists/${id}/albums`,
         method: "GET",
@@ -31,7 +31,10 @@ export const artistSpotifyApi = createApi({
       }),
       providesTags: () => ["Artist"],
     }),
-    getArtistTopTracks: builder.query({
+    getArtistTopTracks: builder.query<
+      SpotifyApi.ArtistsTopTracksResponse,
+      string
+    >({
       query: (id) => ({
         url: `/artists/${id}/top-tracks`,
         method: "GET",
