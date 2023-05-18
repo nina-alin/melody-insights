@@ -7,6 +7,9 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "@/store";
 import "./globals.css";
+import RootLayout from "@/components/root-layout/root-layout";
+import { useGetUserQuery } from "@/pages/api/user.api";
+import Loading from "@/components/common/states/loading";
 
 const nunito = Nunito({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,9 +27,11 @@ export default function App({
         <PersistGate loading={null} persistor={persistor}>
           <div className={nunito.className}>
             <div className="flex flex-col">
-              <main className="top-20 flex-1 bg-spotify-background text-white">
-                <Component {...pageProps} />
-              </main>
+              <RootLayout>
+                <main className="top-20 flex-1 bg-spotify-background text-white">
+                  <Component {...pageProps} />
+                </main>
+              </RootLayout>
             </div>
           </div>
         </PersistGate>
@@ -35,6 +40,8 @@ export default function App({
   );
 }
 
+// this line adds a warning a build. unfortunately, i can't really prevent this behavior.
+// read more: https://stackoverflow.com/questions/74122252/you-have-opted-out-of-automatic-static-optimization-due-to-getinitialprops-in
 App.getInitialProps = async ({
   ctx,
 }: {

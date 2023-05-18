@@ -1,26 +1,34 @@
 import { Fragment } from "react";
 
-import { Menu, RadioGroup, Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch, useSelector } from "react-redux";
 
-import GreenishLink from "@/components/common/template/greenish-link";
 import SearchBar from "@/components/common/template/search-bar";
 import SignOut from "@/components/root-layout/sign-out";
 import useMediaQuery from "@/hooks/use-media-query";
-import { setRange } from "@/reducer";
-import { RootState } from "@/store";
+import ExitIcon from "@/components/common/icons/exit-icon";
+import HomeIcon from "@/components/common/icons/home-icon";
+import ArtistIcon from "@/components/common/icons/artist-icon";
+import SongIcon from "@/components/common/icons/song-icon";
+import NavigationItems from "@/components/root-layout/navigation-items";
+import RangeInputs from "@/components/root-layout/range-inputs";
+
+const ranges = [
+  { name: "Last 4 Weeks", value: "short_term" },
+  { name: "Last 6 Months", value: "medium_term" },
+  { name: "All Time", value: "long_term" },
+];
+
+const navigation = [
+  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
+  { name: "Artists", href: "/artists", icon: ArtistIcon },
+  { name: "Songs", href: "/songs", icon: SongIcon },
+];
 
 const UserMenu = ({ imageUrl }: { imageUrl: string | undefined }) => {
-  const router = useRouter();
-  const range = useSelector((state: RootState) => state.globalState.range);
-  const dispatch = useDispatch();
-
-  const { pathname } = router;
   const isMd = useMediaQuery("(max-width: 768px)");
-  const isLg = useMediaQuery("(max-width: 1024px)");
+  const isXl = useMediaQuery("(max-width: 1280px)");
 
   return (
     <Menu>
@@ -48,109 +56,47 @@ const UserMenu = ({ imageUrl }: { imageUrl: string | undefined }) => {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <div className="absolute left-0 right-0 top-0 z-10 flex h-full origin-top-right flex-col gap-2 rounded-md bg-gray-700 p-5 pt-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:left-auto md:right-10 md:top-auto md:mt-2 md:h-auto md:w-24 lg:p-2">
+        <div className="absolute left-0 right-0 top-0 z-10 flex h-full origin-top-right flex-col gap-2 rounded-md bg-gray-700 p-5 pt-6 font-normal shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:left-auto md:right-10 md:top-auto md:mt-2 md:h-auto md:w-52 lg:p-6">
           <Menu.Items>
-            {isMd ? (
-              <div className="self-end text-2xl">
-                <Menu.Item>
-                  <GiHamburgerMenu />
-                </Menu.Item>
-              </div>
-            ) : null}
+            <div className={"flex flex-col gap-5 divide-y divide-white"}>
+              {isMd ? (
+                <div className="self-end text-2xl">
+                  <Menu.Item>
+                    <GiHamburgerMenu />
+                  </Menu.Item>
+                </div>
+              ) : null}
 
-            {isLg ? (
+              {/* using this variable to prevent the divider to be displayed. display:hidden doesn't hide the divider by default  */}
+              {isXl ? (
+                <div className={`flex flex-col gap-5 pt-5 md:pt-0`}>
+                  <Menu.Item>
+                    <SearchBar />
+                  </Menu.Item>
+
+                  <div className={"flex flex-col gap-3 md:hidden"}>
+                    {navigation.map((item) => (
+                      <NavigationItems item={item} key={item.name} />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
               <Menu.Item>
-                <SearchBar />
+                <div className={`flex flex-col space-y-4 ${isXl && "pt-5"}`}>
+                  {ranges.map((r) => (
+                    <RangeInputs key={r.value} rangeInput={r} />
+                  ))}
+                </div>
               </Menu.Item>
-            ) : null}
 
-            {isMd ? (
-              <>
-                <Menu.Item>
-                  {({ close }) => (
-                    <GreenishLink
-                      href="/dashboard"
-                      selected={pathname === "/dashboard"}
-                    >
-                      <button onClick={close} type="button">
-                        Dashboard
-                      </button>
-                    </GreenishLink>
-                  )}
-                </Menu.Item>
-
-                <Menu.Item>
-                  {({ close }) => (
-                    <GreenishLink
-                      href="/artists"
-                      selected={pathname === "/artists"}
-                    >
-                      <button onClick={close} type="button">
-                        Artists
-                      </button>
-                    </GreenishLink>
-                  )}
-                </Menu.Item>
-
-                <Menu.Item>
-                  {({ close }) => (
-                    <GreenishLink
-                      href="/songs"
-                      selected={pathname === "/songs"}
-                    >
-                      <button onClick={close} type="button">
-                        Songs
-                      </button>
-                    </GreenishLink>
-                  )}
-                </Menu.Item>
-              </>
-            ) : null}
-
-            <Menu.Item>
-              <div>
-                <RadioGroup value={range}>
-                  <RadioGroup.Label>Time Range</RadioGroup.Label>
-
-                  <RadioGroup.Option
-                    onClick={() => dispatch(setRange("short_term"))}
-                    value="short_term"
-                  >
-                    {({ checked }) => (
-                      <span className={checked ? "bg-blue-200" : ""}>
-                        Short Term
-                      </span>
-                    )}
-                  </RadioGroup.Option>
-
-                  <RadioGroup.Option
-                    onClick={() => dispatch(setRange("medium_term"))}
-                    value="medium_term"
-                  >
-                    {({ checked }) => (
-                      <span className={checked ? "bg-blue-200" : ""}>
-                        Medium Term
-                      </span>
-                    )}
-                  </RadioGroup.Option>
-
-                  <RadioGroup.Option
-                    onClick={() => dispatch(setRange("long_term"))}
-                    value="long_term"
-                  >
-                    {({ checked }) => (
-                      <span className={checked ? "bg-blue-200" : ""}>
-                        Long Term
-                      </span>
-                    )}
-                  </RadioGroup.Option>
-                </RadioGroup>
-              </div>
-            </Menu.Item>
-
-            <Menu.Item>
-              <SignOut />
-            </Menu.Item>
+              <Menu.Item>
+                <div className={"ml-0.5 flex w-full items-center gap-3.5 pt-5"}>
+                  <ExitIcon />
+                  <SignOut />
+                </div>
+              </Menu.Item>
+            </div>
           </Menu.Items>
         </div>
       </Transition>

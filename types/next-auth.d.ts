@@ -1,6 +1,3 @@
-// my-project/types/next-auth.d.ts
-
-// eslint-disable-next-line unused-imports/no-unused-imports
 import NextAuth from "next-auth";
 
 declare module "next-auth" {
