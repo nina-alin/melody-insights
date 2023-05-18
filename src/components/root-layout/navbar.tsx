@@ -1,44 +1,52 @@
-import Image from "next/image";
-import { useSession } from "next-auth/react";
-import SignOut from "./sign-out";
-import SignIn from "./sign-in";
-import SpotifyLogo from "../logo/spotify-logo";
-import { GiHamburgerMenu } from "react-icons/gi";
-import SearchBar from "../common/template/search-bar";
-import GreenishLink from "../common/template/greenish-link";
 import { useRouter } from "next/router";
 
+import SpotifyLogo from "@/components/common/icons/spotify-logo";
+import Loading from "@/components/common/states/loading";
+import UserMenu from "@/components/root-layout/user-menu";
+import { useGetUserQuery } from "@/pages/api/user.api";
+
+import GreenishLink from "../common/template/greenish-link";
+import SearchBar from "../common/template/search-bar";
+
 const NavBar = () => {
-  const { data: session } = useSession();
+  const { data: user, isLoading } = useGetUserQuery();
   const router = useRouter();
   const { pathname } = router;
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <nav className="flex h-20 items-center bg-black p-2 px-12 font-extrabold text-white">
+    <nav className="flex h-20 items-center bg-black p-2 px-5 font-extrabold text-white lg:px-12">
       <div className="flex grow items-center gap-32">
         <div
-          onClick={() => router.push("/")}
           className="flex cursor-pointer items-center gap-2"
+          onClick={() => router.push("/dashboard")}
         >
           <div>
             <SpotifyLogo />
           </div>
+
           <div className="text-2xl font-extrabold">Spotify Enhanced ✨</div>
         </div>
-        <div className="hidden lg:block">
+
+        <div className="hidden xl:block">
           <SearchBar />
         </div>
       </div>
+
       <div className="grow">
         <ul className="hidden justify-center gap-14 text-xl md:flex">
           <li>
             <GreenishLink
-              selected={pathname === "/dashboard"}
               href="/dashboard"
+              selected={pathname === "/dashboard"}
             >
               Dashboard
             </GreenishLink>
           </li>
+
           <li>
             <GreenishLink
               href="/artists"
@@ -47,6 +55,7 @@ const NavBar = () => {
               Artists
             </GreenishLink>
           </li>
+
           <li>
             <GreenishLink href="/songs" selected={pathname.includes("/songs")}>
               Songs
@@ -54,29 +63,9 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
+
       <div className="flex items-center">
-        <div>
-          {session?.user ? (
-            <>
-              <div className="flex items-center gap-2">
-                <button className="hidden overflow-hidden rounded-full md:block">
-                  <Image
-                    src={session.user.image ?? "/placeholder.png"}
-                    alt="User Image"
-                    width={42}
-                    height={38}
-                  />
-                </button>
-                <GiHamburgerMenu className="text-2xl md:hidden" />
-                <SignOut />
-              </div>
-            </>
-          ) : (
-            <>
-              <SignIn />
-            </>
-          )}
-        </div>
+        <div>{user ? <UserMenu imageUrl={user?.images[0]?.url} /> : null}</div>
       </div>
     </nav>
   );

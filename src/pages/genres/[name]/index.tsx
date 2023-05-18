@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+
+import NotAvailableYet from "@/components/common/states/not-available-yet";
+
 import { useGetTagInfoQuery } from "../../api/tag.api";
 
 const GenreDetails: NextPage = () => {
@@ -16,7 +19,7 @@ const GenreDetails: NextPage = () => {
     );
 
   return (
-    <div>
+    /*    <div>
       <h1>Genre: {name}</h1>
       <h2>Description:</h2>
       <p
@@ -25,7 +28,8 @@ const GenreDetails: NextPage = () => {
         }}
       />
       <h2>Recommandations:</h2>
-    </div>
+    </div>*/
+    <NotAvailableYet />
   );
 };
 

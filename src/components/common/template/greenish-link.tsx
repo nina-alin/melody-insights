@@ -1,21 +1,25 @@
-import Link from "next/link";
 import React from "react";
 
-interface GreenishLinkProps {
+import Link from "next/link";
+
+type GreenishLinkProps = {
   href: string;
   selected?: boolean;
   children: React.ReactNode;
-}
+};
 
 const GreenishLink = ({ href, selected, children }: GreenishLinkProps) => (
-  <Link
+  <div
     className={`hover:text-spotify-primary ${
       selected && "text-spotify-primary"
     }`}
-    href={href}
   >
-    {children}
-  </Link>
+    <Link href={href}>{children}</Link>
+  </div>
 );
+
+GreenishLink.defaultProps = {
+  selected: false,
+};
 
 export default GreenishLink;

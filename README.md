@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Enhanced ✨
+
+Spotify Enhanced is an application for discovering artists, albums, music genres, and songs. The application utilizes Spotify authentication to retrieve a user's favorite artists, songs, and music genres. It provides rich, detailed pages for each song, artist, album, and genre, filled with relevant suggestions and data.
+
+## Features
+
+- **User Dashboard**: Displays user profile, favorite music genres, top artists, and current songs.
+- **Song Page**: Presents detailed information about the song, including artist, album, and recommendations for similar songs.
+- **Artist Page**: Contains artist profile and description, list of their albums, most popular songs, and suggestions of similar artists.
+- **Genre Page**: Provides a description of the genre, including its history and key characteristics, along with artists and songs belonging to the genre.
+- **Album Page**: Features a description of the album, the artists involved, associated music genres, and suggestions of similar albums.
+- **User Profile Page**: Displays the user's profile information.
+
+## Built With
+
+- [Next.js](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+
+## APIs Used
+
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+- [Last.fm API](https://www.last.fm/fr/api)
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running, follow these steps:
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/nina-alin/spotify-enhanced.git
+```
+
+Install NPM packages:
+
+```bash
+pnpm install
+```
+
+Create a .env.local file in the root directory and fill it with your API keys and other sensitive data (like Spotify Client ID and Client Secret).
+
+Start the development server:
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## License
 
-## Learn More
+[MIT](https://choosealicense.com/licenses/mit/#)
 
-To learn more about Next.js, take a look at the following resources:
+## Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Nina Alin - alin.nina28@gmail.com
+- Project Link: https://github.com/nina-alin/spotify-enhanced.git

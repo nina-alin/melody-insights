@@ -1,11 +1,13 @@
-import { useGetUserTopQuery } from "@/pages/api/user.api";
 import { useSelector } from "react-redux";
-import Loading from "@/components/common/states/loading";
+
 import Error from "@/components/common/states/error";
+import Loading from "@/components/common/states/loading";
 import SectionTitle from "@/components/common/template/section-title";
+import GenresDetails from "@/components/dashboard/genres-details";
+import { useGetUserTopQuery } from "@/pages/api/user.api";
 import { RootState } from "@/store";
 
-type Genre = {
+export type Genre = {
   name: string;
   percentage: number;
 };
@@ -30,39 +32,37 @@ const TopGenres = () => {
     (item) => item.genres
   );
 
-  const elementCounts = genres.reduce(
-    (acc: Array<{ name: string; percentage: number }>, curr) => {
-      const index = acc.findIndex((item: Genre) => item.name === curr);
-      if (index === -1) {
-        acc.push({ name: curr, percentage: 1 });
-      } else {
-        acc[index].percentage++;
-      }
-      return acc;
-    },
-    []
-  );
+  const elementCounts = genres.reduce((acc: Array<Genre>, curr) => {
+    const index = acc.findIndex((item: Genre) => item.name === curr);
+    if (index === -1) {
+      acc.push({ name: curr, percentage: 1 });
+    } else {
+      acc[index].percentage++;
+    }
+    return acc;
+  }, []);
 
   elementCounts.sort((a: Genre, b: Genre) => b.percentage - a.percentage);
 
-  const slicedGenres = elementCounts.slice(0, 20);
+  const slicedGenres = elementCounts.slice(0, 17);
 
   return (
-    <section>
-      <SectionTitle>Most listened genres</SectionTitle>
-      <div className="flex flex-col justify-evenly gap-2">
-        {slicedGenres.map((item: Genre) => (
-          <div key={item.name} className="mb-2">
-            <div className="flex items-center">
-              <span className="text-sm">{item.name}</span>
-              <span className="ml-2 text-xs">
-                {Math.round(item.percentage)}%
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+    <div className="h-3/5">
+      <section className="flex flex-col gap-5">
+        <SectionTitle>Most listened genres</SectionTitle>
+
+        <div className="flex flex-col justify-evenly gap-2">
+          {slicedGenres.map((item: Genre) => (
+            <GenresDetails
+              genre={item}
+              key={`${item.name} - ${item.percentage}`}
+              topArtists={topArtists.items as SpotifyApi.ArtistObjectFull[]}
+              totalGenres={genres.length}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };
 

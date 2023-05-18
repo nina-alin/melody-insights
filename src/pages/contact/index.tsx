@@ -2,8 +2,6 @@ import { NextPage } from "next";
 
 import NotAvailableYet from "@/components/common/states/not-available-yet";
 
-const SongPage: NextPage = () => {
-  return <NotAvailableYet />;
-};
+const ContactPage: NextPage = () => <NotAvailableYet />;
 
-export default SongPage;
+export default ContactPage;

@@ -1,7 +1,9 @@
 import { NextPage } from "next";
 
+import NotAvailableYet from "@/components/common/states/not-available-yet";
+
 const ArtistPage: NextPage = () => {
-  return <div>todo</div>;
+  return <NotAvailableYet />;
 };
 
 export default ArtistPage;

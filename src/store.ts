@@ -1,16 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { userApi } from "./pages/api/user.api";
-import { tracksApi } from "./pages/api/tracks.api";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 import { albumLastfmApi } from "./pages/api/album.lastfm.api";
 import { albumSpotifyApi } from "./pages/api/album.spotify.api";
 import { artistLastfmApi } from "./pages/api/artist.lastfm.api";
 import { tagApi } from "./pages/api/tag.api";
+import { tracksApi } from "./pages/api/tracks.api";
+import { userApi } from "./pages/api/user.api";
 import globalStateSlice from "./reducer";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, globalStateSlice);
 
 export const store = configureStore({
   reducer: {
-    globalState: globalStateSlice,
+    globalState: persistedReducer,
     [albumLastfmApi.reducerPath]: albumLastfmApi.reducer,
     [albumSpotifyApi.reducerPath]: albumSpotifyApi.reducer,
     [artistLastfmApi.reducerPath]: artistLastfmApi.reducer,
@@ -29,5 +39,8 @@ export const store = configureStore({
     ),
 });
 
+export const persistor = persistStore(store);
+
 setupListeners(store.dispatch);
+
 export type RootState = ReturnType<typeof store.getState>;

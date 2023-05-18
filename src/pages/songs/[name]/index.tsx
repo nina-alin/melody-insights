@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+
+import NotAvailableYet from "@/components/common/states/not-available-yet";
+
 import { useGetTrackQuery } from "../../api/tracks.api";
 
 const SongDetails: NextPage = () => {
@@ -8,11 +11,12 @@ const SongDetails: NextPage = () => {
   const { data: track, isLoading, isError } = useGetTrackQuery(id as string);
 
   return (
-    <div>
+    /* <div>
       <h1>Song: {name}</h1>
       <h2>Duration: </h2>
       {track?.duration_ms}
-    </div>
+    </div>*/
+    <NotAvailableYet />
   );
 };
 

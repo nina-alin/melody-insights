@@ -1,4 +1,3 @@
-import { SessionWithAccessToken } from "@/interface/session-with-access-token";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getSession } from "next-auth/react";
 
@@ -7,7 +6,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_SPOTIFY_API_URL,
     prepareHeaders: async (headers) => {
-      const session: SessionWithAccessToken = await getSession();
+      const session = await getSession();
       if (session) {
         headers.set("Authorization", `Bearer ${session.accessToken}`);
       }
@@ -26,7 +25,7 @@ export const userApi = createApi({
     }),
     getUserTop: builder.query<
       SpotifyApi.UsersTopTracksResponse | SpotifyApi.UsersTopArtistsResponse,
-      { type: string; time_range: string; limit: number; offset: number }
+      { type: string; time_range: string; limit?: number; offset?: number }
     >({
       query: ({ type, time_range, limit, offset }) => ({
         url: `me/top/${type}`,
@@ -35,7 +34,7 @@ export const userApi = createApi({
         params: {
           time_range,
           limit,
-          offset,
+          offset: offset ?? 0,
         },
       }),
       providesTags: () => ["User"],

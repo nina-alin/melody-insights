@@ -1,12 +1,8 @@
 import { Spinner } from "flowbite-react";
 
 const Loading = () => (
-  <div className="text-center">
-    <Spinner
-      aria-label="Center-aligned spinner example"
-      className="text-spotify-primary"
-      color={"#ffffff"}
-    />
+  <div className="min-h-screen text-center">
+    <Spinner aria-label="Center-aligned spinner example" color="#ffffff" />
   </div>
 );
 

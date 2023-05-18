@@ -1,18 +1,28 @@
 import Image from "next/image";
-interface ArtistOrTrackProps {
+import Link from "next/link";
+
+type ArtistOrTrackProps = {
   image: string;
   title: string;
-  subtitle: string;
-}
-const ArtistOrTrack = ({ image, title, subtitle }: ArtistOrTrackProps) => {
+  subtitle: JSX.Element | JSX.Element[];
+  hrefTitle: string;
+};
+const ArtistOrTrack = ({
+  image,
+  title,
+  subtitle,
+  hrefTitle,
+}: ArtistOrTrackProps) => {
   return (
     <div className="flex h-12 items-center gap-2">
-      <Image src={image} alt="Artist Image" width={42} height={38} />
+      <Image alt="Artist Image" height={38} src={image} width={42} />
+
       <div className="flex flex-col">
-        <p className="font-bold text-white hover:cursor-pointer hover:text-spotify-primary">
-          {title}
-        </p>
-        <p className="text-sm text-gray-500">{subtitle}</p>
+        <div className="font-bold text-white hover:cursor-pointer hover:text-spotify-primary md:line-clamp-2">
+          <Link href={hrefTitle}>{title}</Link>
+        </div>
+
+        <div className="line-clamp-1 text-sm text-gray-500">{subtitle}</div>
       </div>
     </div>
   );

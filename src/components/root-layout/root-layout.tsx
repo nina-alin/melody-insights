@@ -1,23 +1,31 @@
-import { signOut, useSession } from "next-auth/react";
+import React from "react";
+
+import { useRouter } from "next/router";
+
+import { useGetUserQuery } from "@/pages/api/user.api";
+
 import Footer from "./footer";
 import NavBar from "./navbar";
-import { useEffect } from "react";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { data: session } = useSession();
+  const router = useRouter();
 
-  // TODO: doesn't work
-  useEffect(() => {
-    if (session && new Date(session.expires) < new Date()) {
-      // The session has expired, sign out the user
-      signOut();
-    }
-  }, [session]);
+  const { isError } = useGetUserQuery();
+
+  const isLandingPage = router.pathname === "/";
+
+  // If there is an error and the user is not on the landing page, redirect to the landing page
+  // The typeof window part is to prevent this from running on the server
+  if (typeof window !== "undefined" && isError && !isLandingPage) {
+    router.push("/");
+  }
 
   return (
     <>
-      <NavBar />
+      {isLandingPage ? null : <NavBar />}
+
       {children}
+
       <Footer />
     </>
   );

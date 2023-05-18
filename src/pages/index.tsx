@@ -1,36 +1,36 @@
 import { NextPage } from "next";
-import GreenButton from "@/components/common/template/green-button";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import Loading from "../components/common/states/loading";
+import { signIn } from "next-auth/react";
 
-const Home: NextPage = () => {
-  const session = useSession();
-  const router = useRouter();
+import SpotifyLogo from "@/components/common/icons/spotify-logo";
 
-  useEffect(() => {
-    if (session.status === "authenticated") router.push("/dashboard");
-  }, [session]);
+const Home: NextPage = () => (
+  <div className="flex min-h-screen flex-1 flex-col items-center justify-center gap-10 px-20  py-2 text-center">
+    <div>
+      <h1 className="text-6xl font-bold text-white">
+        Welcome to{" "}
+        <span className="text-spotify-primary">Spotify Enhanced ✨</span>
+      </h1>
 
-  if (session.status === "loading") return <Loading />;
-
-  return (
-    <div className="flex flex-col gap-10">
-      <h1>Find REAL suggestions about your likes</h1>
-      <p>
-        Spotify Enhanced is a complement to Spotify that helps you find new
-        music based on your tastes
+      <p className="mt-3 text-2xl text-white">
+        Discover your top artists and songs on Spotify, and more!
       </p>
-      <p>
-        No music, no playlists. Just here to provide real informations about
-        what you&apos;re listening
-      </p>
-      <GreenButton
-        onClick={() => router.push("/api/auth/signin")}
-        label="Sign up with Spotify"
-      />
     </div>
-  );
-};
+
+    <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+      <button
+        className="flex items-center gap-2 rounded bg-spotify-primary fill-white stroke-black px-6 py-4 font-bold text-white hover:bg-spotify-primary"
+        onClick={() => signIn("spotify")}
+        type="button"
+      >
+        <SpotifyLogo />
+        Connect with Spotify
+      </button>
+    </div>
+    <p>
+      This website is currently on version{" "}
+      <span className="font-bold text-spotify-primary">0.1.0</span>. More
+      features will come soon :)
+    </p>
+  </div>
+);
 export default Home;
