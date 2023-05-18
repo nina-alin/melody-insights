@@ -15,7 +15,7 @@ export const userApi = createApi({
   }),
   tagTypes: ["User"],
   endpoints: (builder) => ({
-    getUser: builder.query<any, void>({
+    getUser: builder.query<SpotifyApi.UserProfileResponse, unknown>({
       query: () => ({
         url: "/me",
         method: "GET",

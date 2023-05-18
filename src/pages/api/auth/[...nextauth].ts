@@ -9,8 +9,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
       authorization: {
         params: {
-          scope:
-            "user-read-private user-read-email user-top-read user-read-recently-played",
+          scope: "user-top-read user-read-recently-played",
         },
       },
     }),
@@ -71,12 +70,6 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session;
-    },
-    async signIn() {
-      return true;
-    },
-    async redirect({ baseUrl }) {
-      return baseUrl + "/dashboard";
     },
   },
 };

@@ -9,7 +9,7 @@ import GreenishLink from "../common/template/greenish-link";
 import SearchBar from "../common/template/search-bar";
 
 const NavBar = () => {
-  const { data: user, isLoading } = useGetUserQuery();
+  const { data: user, isLoading } = useGetUserQuery({});
   const router = useRouter();
   const { pathname } = router;
 
@@ -65,7 +65,13 @@ const NavBar = () => {
       </div>
 
       <div className="flex items-center">
-        <div>{user ? <UserMenu imageUrl={user?.images[0]?.url} /> : null}</div>
+        <div>
+          {user ? (
+            <UserMenu
+              imageUrl={(user.images && user.images[0].url) ?? undefined}
+            />
+          ) : null}
+        </div>
       </div>
     </nav>
   );

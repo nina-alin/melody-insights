@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
 
 import Error from "@/components/common/states/error";
@@ -15,10 +15,6 @@ const ArtistDetails: NextPage = () => {
     isLoading,
     isError,
   } = useGetArtistDescriptionQuery(name as string);
-
-  if (isError) {
-    return <Error />;
-  }
 
   if (isLoading) {
     return <Loading />;

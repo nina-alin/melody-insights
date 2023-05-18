@@ -1,6 +1,7 @@
 import React from "react";
 
 import { NextPage } from "next";
+import Head from "next/head";
 
 import MostPopularArtists from "@/components/dashboard/most-popular-artists";
 import RecentlyPlayed from "@/components/dashboard/recently-played";
@@ -12,17 +13,27 @@ import "swiper/css/navigation";
 
 const Dashboard: NextPage = () => {
   return (
-    <div className=" mb-8 flex flex-col gap-16 px-5 md:grid md:grid-cols-2 md:px-12">
-      <TrackCarousel />
+    <>
+      <Head>
+        <title>Dashboard</title>
+        <meta
+          name="description"
+          content="Spotify Enhanced is a web app that provides you with insights about your Spotify account. This is the dashboard page."
+          key="desc"
+        />
+      </Head>
+      <div className=" mb-8 flex flex-col gap-16 px-5 md:grid md:grid-cols-2 md:px-12">
+        <TrackCarousel />
 
-      <TopArtists />
+        <TopArtists />
 
-      <RecentlyPlayed />
+        <RecentlyPlayed />
 
-      <TopGenres />
+        <TopGenres />
 
-      <MostPopularArtists />
-    </div>
+        <MostPopularArtists />
+      </div>
+    </>
   );
 };
 
