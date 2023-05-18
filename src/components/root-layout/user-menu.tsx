@@ -43,7 +43,7 @@ const UserMenu = ({ imageUrl }: { imageUrl: string | undefined }) => {
         </div>
 
         <div className="text-2xl md:hidden">
-          <GiHamburgerMenu />
+          <GiHamburgerMenu aria-label={"menu"} />
         </div>
       </Menu.Button>
 

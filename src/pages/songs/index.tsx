@@ -7,3 +7,9 @@ const SongPage: NextPage = () => {
 };
 
 export default SongPage;
+
+export async function getStaticProps(context: any) {
+  return {
+    notFound: true, // triggers 404
+  };
+}

@@ -1,12 +1,16 @@
 import { useState } from "react";
 import React from "react";
 
-import Link from "next/link";
-
 import ChevronIcon from "@/components/common/icons/chevron-icon";
 import GreenishLink from "@/components/common/template/greenish-link";
-import ArtistOrTrack from "@/components/dashboard/artist-or-track";
 import { Genre } from "@/components/dashboard/top-genres";
+import dynamic from "next/dynamic";
+const ArtistsByGenre = dynamic(
+  () => import("@/components/dashboard/artists-by-genre"),
+  {
+    ssr: false,
+  }
+);
 
 type GenresDetails = {
   genre: Genre;
@@ -16,10 +20,6 @@ type GenresDetails = {
 const GenresDetails = ({ genre, topArtists, totalGenres }: GenresDetails) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const artists = topArtists?.filter((item) =>
-    item.genres.includes(genre.name)
-  );
-
   const handleOpen = () => setIsOpened(!isOpened);
 
   return (
@@ -27,11 +27,16 @@ const GenresDetails = ({ genre, topArtists, totalGenres }: GenresDetails) => {
       <div className="flex flex-col gap-2 p-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={handleOpen} type="button">
+            <button
+              onClick={handleOpen}
+              type="button"
+              aria-label={"open"}
+              aria-labelledby={`genre-${genre.name}`}
+            >
               <ChevronIcon isOpened={isOpened} />
             </button>
 
-            <div className="font-bold">
+            <div className="font-bold" id={`genre-${genre.name}`}>
               <GreenishLink href={`/genres/${genre.name}`}>
                 {genre.name}
               </GreenishLink>
@@ -44,27 +49,7 @@ const GenresDetails = ({ genre, topArtists, totalGenres }: GenresDetails) => {
         </div>
 
         {isOpened ? (
-          <div className="flex flex-col gap-3 pl-10">
-            {artists.map((artist) => (
-              <ArtistOrTrack
-                hrefTitle={`/artists/${artist.name}`}
-                image={artist.images[0].url}
-                key={artist.id}
-                subtitle={artist.genres.map((genre, index) => (
-                  <span key={genre}>
-                    <span className="hover:underline">
-                      <Link href={`/genres/${genre}`}>{genre}</Link>
-                    </span>
-
-                    {index < artist.genres.length - 1 && (
-                      <span>{",\u00A0"}</span>
-                    )}
-                  </span>
-                ))}
-                title={artist.name}
-              />
-            ))}
-          </div>
+          <ArtistsByGenre genreName={genre.name} topArtists={topArtists} />
         ) : null}
       </div>
     </div>

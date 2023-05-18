@@ -37,11 +37,11 @@ const Footer = () => {
       </p>
 
       <div className="flex items-center justify-end gap-5">
-        <Link href="https://github.com/nina-alin">
+        <Link href="https://github.com/nina-alin" aria-label={"github"}>
           <GithubIcon />
         </Link>
 
-        <Link href="https://twitter.com/karmirariel">
+        <Link href="https://twitter.com/karmirariel" aria-label={"twitter"}>
           <TwitterIcon />
         </Link>
       </div>
