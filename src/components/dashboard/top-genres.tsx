@@ -44,7 +44,7 @@ const TopGenres = () => {
 
   elementCounts.sort((a: Genre, b: Genre) => b.percentage - a.percentage);
 
-  const slicedGenres = elementCounts.slice(0, 17);
+  const slicedGenres = elementCounts.slice(0, 19);
 
   return (
     <div className="h-3/5">

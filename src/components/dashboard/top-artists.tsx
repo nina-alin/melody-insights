@@ -44,7 +44,7 @@ const TopArtists = () => {
         <SectionTitle>Top Artists</SectionTitle>
       </div>
 
-      <div className="flex flex-wrap gap-5 lg:flex-nowrap">
+      <div className="flex flex-wrap gap-5 xl:flex-nowrap">
         {columnsArtists.map((column) => (
           <div className="flex w-full flex-col gap-5" key={uuidv4()}>
             {column.map((artist) => (
@@ -64,6 +64,7 @@ const TopArtists = () => {
                   </span>
                 ))}
                 title={artist.name}
+                popularity={artist.popularity}
               />
             ))}
           </div>

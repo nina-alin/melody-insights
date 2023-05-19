@@ -40,14 +40,14 @@ const RecentlyPlayed = () => {
         <SectionTitle>Recently Played</SectionTitle>
       </div>
 
-      <div className="flex flex-wrap gap-5 lg:flex-nowrap">
+      <div className="flex flex-wrap gap-5 xl:flex-nowrap">
         {columnsRecentlyPlayed.map((column) => (
           <div className="flex w-full flex-col gap-5" key={uuidv4()}>
             {column.map((track) => (
               <ArtistOrTrack
                 hrefTitle={`/songs/${track.track.name}`}
                 image={track.track.album?.images[0].url}
-                key={track.track.id}
+                key={uuidv4()}
                 subtitle={track.track.artists
                   ?.map((artist) => artist.name)
                   .map((name, index) => (

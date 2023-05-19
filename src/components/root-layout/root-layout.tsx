@@ -15,7 +15,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   const router = useRouter();
 
   const { data, isLoading, isError } = useGetUserQuery({
-    pollingInterval: 1000 * 60 * 60,
+    pollingInterval: 10000,
   });
 
   if (isLoading) {

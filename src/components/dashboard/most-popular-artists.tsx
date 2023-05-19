@@ -11,6 +11,7 @@ import ArtistCard from "@/components/dashboard/artist-card";
 import useMediaQuery from "@/hooks/use-media-query";
 import { useGetUserTopQuery } from "@/pages/api/user.api";
 import { RootState } from "@/store";
+import ArtistOrTrack from "@/components/dashboard/artist-or-track";
 
 const MostPopularArtists = () => {
   const range = useSelector((state: RootState) => state.globalState.range);
@@ -64,48 +65,26 @@ const MostPopularArtists = () => {
 
       <div className="flex flex-col gap-5">
         {popularArtists.map((item) => (
-          <div className="flex h-12 items-center justify-between" key={item.id}>
-            <div className="flex items-center gap-2">
-              <Image
-                alt="Artist Image"
-                height={38}
-                src={item.images[0].url}
-                width={42}
-              />
+          <ArtistOrTrack
+            image={item.images[0].url}
+            title={item.name}
+            subtitle={
+              <>
+                {item.genres.map((genre, index) => (
+                  <React.Fragment key={genre}>
+                    <span className="hover:underline">
+                      <Link href={`/genres/${genre}`}>{genre}</Link>
+                    </span>
 
-              <div className="flex flex-col">
-                <div className="font-bold">
-                  <GreenishLink href={`/artists/${item.name}`}>
-                    {item.name}
-                  </GreenishLink>
-                </div>
-
-                <p className="line-clamp-1 text-sm text-gray-500">
-                  {item.genres.map((genre, index) => (
-                    <React.Fragment key={genre}>
-                      <span className="hover:underline">
-                        <Link href={`/genres/${genre}`}>{genre}</Link>
-                      </span>
-
-                      {index < item.genres.length - 1 && (
-                        <span>{",\u00A0"}</span>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <div className="flex flex-col">
-                <p className="text-center font-bold text-white">
-                  {item.popularity}
-                </p>
-
-                <p className="text-sm text-gray-500">Popularity</p>
-              </div>
-            </div>
-          </div>
+                    {index < item.genres.length - 1 && <span>{",\u00A0"}</span>}
+                  </React.Fragment>
+                ))}
+              </>
+            }
+            hrefTitle={`/artists/${item.name}`}
+            popularity={item.popularity}
+            key={item.id}
+          />
         ))}
       </div>
     </div>

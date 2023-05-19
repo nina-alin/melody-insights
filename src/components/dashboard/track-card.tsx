@@ -5,6 +5,7 @@ import useMediaQuery from "@/hooks/use-media-query";
 
 type TrackCardProps = {
   track: SpotifyApi.TrackObjectFull;
+  index: number;
 };
 
 const imageSize = (isSmallScreen: boolean, isLargeScreen: boolean) => {
@@ -16,7 +17,7 @@ const imageSize = (isSmallScreen: boolean, isLargeScreen: boolean) => {
     return 160;
   }
 };
-const TrackCard = ({ track }: TrackCardProps) => {
+const TrackCard = ({ track, index }: TrackCardProps) => {
   const isSmallScreen = useMediaQuery("(max-width: 640px)");
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
@@ -33,6 +34,13 @@ const TrackCard = ({ track }: TrackCardProps) => {
               src={track.album.images[0].url}
               width={imageSize(isSmallScreen, isLargeScreen)}
             />
+            <div
+              className={
+                "absolute left-4 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black bg-opacity-30 p-0.5 font-bold"
+              }
+            >
+              <p>{index + 1}</p>
+            </div>
           </div>
 
           <div className="flex flex-col">
