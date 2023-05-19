@@ -57,7 +57,7 @@ const TrackCarousel = () => {
   }
 
   return (
-    <div className="col-span-2 mt-16 flex flex-col gap-8">
+    <div className="col-span-2 mt-8 flex flex-col gap-8 md:mt-16">
       <div className="flex flex-wrap-reverse items-center justify-between gap-5">
         <SectionTitle>Top tracks</SectionTitle>
         <p className={"font-bold"}>
@@ -99,9 +99,12 @@ const TrackCarousel = () => {
           navigation={{ nextEl: "#swiper-forward", prevEl: "#swiper-back" }}
           slidesPerView={3}
         >
-          {topTracks?.items?.map((track) => (
+          {topTracks?.items?.map((track, index) => (
             <SwiperSlide key={track.id}>
-              <TrackCard track={track as SpotifyApi.TrackObjectFull} />
+              <TrackCard
+                track={track as SpotifyApi.TrackObjectFull}
+                index={index}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -28,7 +28,7 @@ export default function App({
           <div className={nunito.className}>
             <div className="flex flex-col">
               <RootLayout>
-                <main className="top-20 flex-1 bg-spotify-background text-white">
+                <main className="top-20 min-h-full flex-1 bg-spotify-background text-white">
                   <Component {...pageProps} />
                 </main>
               </RootLayout>

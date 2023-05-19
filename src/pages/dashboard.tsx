@@ -10,6 +10,7 @@ import TopGenres from "@/components/dashboard/top-genres";
 import TrackCarousel from "@/components/dashboard/track-carousel";
 import "swiper/css";
 import "swiper/css/navigation";
+import PopularityArtists from "@/components/dashboard/popularity-artists";
 
 const Dashboard: NextPage = () => {
   return (
@@ -22,7 +23,7 @@ const Dashboard: NextPage = () => {
           key="desc"
         />
       </Head>
-      <div className=" mb-8 flex flex-col gap-16 px-5 md:grid md:grid-cols-2 md:px-12">
+      <div className="mb-8 flex flex-col gap-16 px-5 md:grid md:grid-cols-2 md:px-12">
         <TrackCarousel />
 
         <TopArtists />
@@ -31,7 +32,7 @@ const Dashboard: NextPage = () => {
 
         <TopGenres />
 
-        <MostPopularArtists />
+        <PopularityArtists />
       </div>
     </>
   );

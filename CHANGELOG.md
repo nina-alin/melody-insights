@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
+## [0.1.2] - 2023-05-20
+
+Added minor improvements to the dashboard.
+
+### Added
+
+- Display the popularity on the top artists
+- Display the "unknown" artists
+- Display the index on the carousel's items
+
+### Changed
+
+- The Spinner is now at the center of the page
+- Pooling interval for the user
+
+### Fixed
+
+- Fixed a layout bug that could occur when the page has no content
+- Error on the Redux Persistor
+- key error on the recently played songs
+
 ## [0.1.1] - 2023-05-19
 
 Fixed some bugs and improved the dashboard.

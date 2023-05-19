@@ -10,6 +10,14 @@ import { tagApi } from "./pages/api/tag.api";
 import { tracksApi } from "./pages/api/tracks.api";
 import { userApi } from "./pages/api/user.api";
 import globalStateSlice from "./reducer";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
 
 const persistConfig = {
   key: "root",
@@ -29,7 +37,11 @@ export const store = configureStore({
     [tracksApi.reducerPath]: tracksApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(
       userApi.middleware,
       tracksApi.middleware,
       albumLastfmApi.middleware,
