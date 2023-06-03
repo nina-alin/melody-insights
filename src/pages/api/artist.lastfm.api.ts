@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { LastfmTypes } from "../../../types/lastfm-types";
 
 export const artistLastfmApi = createApi({
   reducerPath: "artistLastfmApi",
@@ -7,17 +8,12 @@ export const artistLastfmApi = createApi({
   }),
   tagTypes: ["Artist"],
   endpoints: (builder) => ({
-    getArtistDescription: builder.query({
+    getArtistDescription: builder.query<
+      { artist: LastfmTypes.ArtistResponse },
+      string
+    >({
       query: (artist) => ({
         url: `/?method=artist.getinfo&artist=${artist}&api_key=${process.env.NEXT_PUBLIC_LAST_FM_API_KEY}&format=json`,
-        method: "GET",
-        credentials: "same-origin",
-      }),
-      providesTags: () => ["Artist"],
-    }),
-    getSimilarArtists: builder.query({
-      query: (artist) => ({
-        url: `/?method=artist.getsimilar&artist=${artist}&api_key=${process.env.NEXT_PUBLIC_LAST_FM_API_KEY}&format=json`,
         method: "GET",
         credentials: "same-origin",
       }),
@@ -26,5 +22,4 @@ export const artistLastfmApi = createApi({
   }),
 });
 
-export const { useGetArtistDescriptionQuery, useGetSimilarArtistsQuery } =
-  artistLastfmApi;
+export const { useGetArtistDescriptionQuery } = artistLastfmApi;

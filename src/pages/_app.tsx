@@ -8,8 +8,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "@/store";
 import "./globals.css";
 import RootLayout from "@/components/root-layout/root-layout";
-import { useGetUserQuery } from "@/pages/api/user.api";
-import Loading from "@/components/common/states/loading";
 
 const nunito = Nunito({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,7 +26,7 @@ export default function App({
           <div className={nunito.className}>
             <div className="flex flex-col">
               <RootLayout>
-                <main className="top-20 min-h-full flex-1 bg-spotify-background text-white">
+                <main className="top-20 min-h-full flex-1 bg-spotify-background text-white focus:outline-offset-1 focus:outline-spotify-primary">
                   <Component {...pageProps} />
                 </main>
               </RootLayout>

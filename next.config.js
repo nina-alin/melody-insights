@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "tailwindcss.com",
+        hostname: "lastfm.freetls.fastly.net",
       },
       {
         protocol: "https",

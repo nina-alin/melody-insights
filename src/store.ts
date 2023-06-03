@@ -18,6 +18,8 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import { artistSpotifyApi } from "@/pages/api/artist.spotify.api";
+import { searchApi } from "@/pages/api/search.api";
 
 const persistConfig = {
   key: "root",
@@ -32,9 +34,11 @@ export const store = configureStore({
     [albumLastfmApi.reducerPath]: albumLastfmApi.reducer,
     [albumSpotifyApi.reducerPath]: albumSpotifyApi.reducer,
     [artistLastfmApi.reducerPath]: artistLastfmApi.reducer,
+    [artistSpotifyApi.reducerPath]: artistSpotifyApi.reducer,
+    [searchApi.reducerPath]: searchApi.reducer,
     [tagApi.reducerPath]: tagApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
     [tracksApi.reducerPath]: tracksApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -42,12 +46,14 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      userApi.middleware,
-      tracksApi.middleware,
       albumLastfmApi.middleware,
       albumSpotifyApi.middleware,
       artistLastfmApi.middleware,
-      tagApi.middleware
+      artistSpotifyApi.middleware,
+      searchApi.middleware,
+      tagApi.middleware,
+      tracksApi.middleware,
+      userApi.middleware
     ),
 });
 

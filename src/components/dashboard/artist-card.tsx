@@ -38,12 +38,12 @@ const ArtistCard = ({ artist, rank }: ArtistCardProps) => {
         <Image
           alt="first artist image"
           height={100}
-          src={artist.images[0].url}
+          src={artist.images[0]?.url}
           width={100}
         />
 
         <div className="text-lg font-extrabold">
-          <GreenishLink href={`/artists/${artist.name}`}>
+          <GreenishLink href={`/artists/${artist.name}?id=${artist.id}`}>
             {artist.name}
           </GreenishLink>
         </div>

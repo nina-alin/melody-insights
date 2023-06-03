@@ -1,17 +1,15 @@
 import React from "react";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useSelector } from "react-redux";
 
 import Loading from "@/components/common/states/loading";
-import GreenishLink from "@/components/common/template/greenish-link";
 import SectionTitle from "@/components/common/template/section-title";
 import ArtistCard from "@/components/dashboard/artist-card";
 import useMediaQuery from "@/hooks/use-media-query";
 import { useGetUserTopQuery } from "@/pages/api/user.api";
 import { RootState } from "@/store";
-import ArtistOrTrack from "@/components/dashboard/artist-or-track";
+import ArtistOrTrack from "@/components/common/template/artist-or-track";
+import Subtitles from "../common/template/subtitles";
 
 const MostPopularArtists = () => {
   const range = useSelector((state: RootState) => state.globalState.range);
@@ -66,24 +64,17 @@ const MostPopularArtists = () => {
       <div className="flex flex-col gap-5">
         {popularArtists.map((item) => (
           <ArtistOrTrack
-            image={item.images[0].url}
-            title={item.name}
-            subtitle={
-              <>
-                {item.genres.map((genre, index) => (
-                  <React.Fragment key={genre}>
-                    <span className="hover:underline">
-                      <Link href={`/genres/${genre}`}>{genre}</Link>
-                    </span>
-
-                    {index < item.genres.length - 1 && <span>{",\u00A0"}</span>}
-                  </React.Fragment>
-                ))}
-              </>
-            }
-            hrefTitle={`/artists/${item.name}`}
-            popularity={item.popularity}
             key={item.id}
+            titles={{
+              title: item.name,
+              hrefTitle: `/artists/${item.name}?id=${item.id}`,
+              subtitle: <Subtitles items={item.genres} baseUrl="/genres" />,
+            }}
+            popularity={item.popularity}
+            urls={{
+              imageUrl: item.images[0]?.url,
+              spotifyUrl: item.external_urls.spotify,
+            }}
           />
         ))}
       </div>

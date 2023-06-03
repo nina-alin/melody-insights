@@ -53,6 +53,23 @@ export const userApi = createApi({
       }),
       providesTags: () => ["User"],
     }),
+    getRecommandations: builder.query<
+      SpotifyApi.RecommendationsFromSeedsResponse,
+      SpotifyApi.RecommendationsOptionsObject
+    >({
+      query: ({ seed_artists, seed_genres, seed_tracks, limit }) => ({
+        url: `/recommendations`,
+        method: "GET",
+        credentials: "same-origin",
+        params: {
+          seed_artists,
+          seed_genres,
+          seed_tracks,
+          limit,
+        },
+      }),
+      providesTags: () => ["User"],
+    }),
   }),
 });
 
@@ -60,4 +77,5 @@ export const {
   useGetUserQuery,
   useGetUserTopQuery,
   useGetRecentlyPlayedQuery,
+  useGetRecommandationsQuery,
 } = userApi;

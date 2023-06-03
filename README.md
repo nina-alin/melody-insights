@@ -1,6 +1,6 @@
-# Spotify Enhanced ✨
+# Melody Insights ✨
 
-Spotify Enhanced is an application for discovering artists, albums, music genres, and songs. The application utilizes Spotify authentication to retrieve a user's favorite artists, songs, and music genres. It provides rich, detailed pages for each song, artist, album, and genre, filled with relevant suggestions and data.
+Melody Insights is an application for discovering artists, albums, music genres, and songs. The application utilizes Spotify authentication to retrieve a user's favorite artists, songs, and music genres. It provides rich, detailed pages for each song, artist, album, and genre, filled with relevant suggestions and data.
 
 ## Features
 

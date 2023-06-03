@@ -28,7 +28,7 @@ const NavBar = () => {
             <SpotifyLogo />
           </div>
 
-          <div className="text-2xl font-extrabold">Spotify Enhanced ✨</div>
+          <div className="text-2xl font-extrabold">Melody Insights ✨</div>
         </div>
 
         <div className="hidden xl:block">
@@ -68,7 +68,7 @@ const NavBar = () => {
         <div>
           {user ? (
             <UserMenu
-              imageUrl={(user.images && user.images[0].url) ?? undefined}
+              imageUrl={(user.images && user.images[0]?.url) ?? undefined}
             />
           ) : null}
         </div>

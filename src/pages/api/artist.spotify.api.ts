@@ -25,7 +25,7 @@ export const artistSpotifyApi = createApi({
     }),
     getArtistAlbums: builder.query<SpotifyApi.ArtistsAlbumsResponse, string>({
       query: (id) => ({
-        url: `/artists/${id}/albums`,
+        url: `/artists/${id}/albums?limit=10`,
         method: "GET",
         credentials: "same-origin",
       }),
@@ -36,7 +36,18 @@ export const artistSpotifyApi = createApi({
       string
     >({
       query: (id) => ({
-        url: `/artists/${id}/top-tracks`,
+        url: `/artists/${id}/top-tracks?country=from_token&limit=20`,
+        method: "GET",
+        credentials: "same-origin",
+      }),
+      providesTags: () => ["Artist"],
+    }),
+    getArtistRelatedArtists: builder.query<
+      SpotifyApi.ArtistsRelatedArtistsResponse,
+      string
+    >({
+      query: (id) => ({
+        url: `/artists/${id}/related-artists`,
         method: "GET",
         credentials: "same-origin",
       }),
@@ -49,4 +60,5 @@ export const {
   useGetArtistQuery,
   useGetArtistAlbumsQuery,
   useGetArtistTopTracksQuery,
+  useGetArtistRelatedArtistsQuery,
 } = artistSpotifyApi;
