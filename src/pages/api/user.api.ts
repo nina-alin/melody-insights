@@ -70,6 +70,22 @@ export const userApi = createApi({
       }),
       providesTags: () => ["User"],
     }),
+    getFollowedArtists: builder.query<
+      SpotifyApi.UsersFollowedArtistsResponse,
+      { limit?: number; after?: string }
+    >({
+      query: ({ limit, after }) => ({
+        url: `/me/following`,
+        method: "GET",
+        credentials: "same-origin",
+        params: {
+          type: "artist",
+          limit,
+          after,
+        },
+      }),
+      providesTags: () => ["User"],
+    }),
   }),
 });
 
@@ -78,4 +94,5 @@ export const {
   useGetUserTopQuery,
   useGetRecentlyPlayedQuery,
   useGetRecommandationsQuery,
+  useGetFollowedArtistsQuery,
 } = userApi;
