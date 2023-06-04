@@ -30,7 +30,7 @@ To get a local copy up and running, follow these steps:
 Clone the repository:
 
 ```bash
-git clone https://github.com/nina-alin/spotify-enhanced.git
+git clone https://github.com/nina-alin/melody-insights
 ```
 
 Install NPM packages:
@@ -60,4 +60,4 @@ Contributions are welcome! For major changes, please open an issue first to disc
 ## Contact
 
 - Nina Alin - alin.nina28@gmail.com
-- Project Link: https://github.com/nina-alin/spotify-enhanced.git
+- Project Link: https://github.com/nina-alin/melody-insights
