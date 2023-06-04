@@ -34,7 +34,7 @@ const Home: NextPage = () => (
       </div>
       <p>
         This website is currently on version{" "}
-        <span className="font-bold text-spotify-primary">0.1.2</span>. More
+        <span className="font-bold text-spotify-primary">0.2.0</span>. More
         features will come soon :)
       </p>
     </div>
