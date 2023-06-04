@@ -2,14 +2,12 @@ import { NextPage } from "next";
 
 import NotAvailableYet from "@/components/common/states/not-available-yet";
 
-const ArtistPage: NextPage = () => {
-  return <NotAvailableYet />;
-};
+const ArtistPage: NextPage = () => <NotAvailableYet />;
 
-export default ArtistPage;
-
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
   return {
     notFound: true, // triggers 404
   };
 }
+
+export default ArtistPage;

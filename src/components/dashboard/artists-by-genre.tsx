@@ -1,6 +1,6 @@
-import ArtistOrTrack from "@/components/dashboard/artist-or-track";
-import Link from "next/link";
+import ArtistOrTrack from "@/components/common/template/artist-or-track";
 import React from "react";
+import Subtitles from "../common/template/subtitles";
 
 type ArtistsByGenreProps = {
   topArtists: SpotifyApi.ArtistObjectFull[];
@@ -13,19 +13,16 @@ const ArtistsByGenre = ({ topArtists, genreName }: ArtistsByGenreProps) => {
     <div className="flex flex-col gap-3 pl-10">
       {artists.map((artist) => (
         <ArtistOrTrack
-          hrefTitle={`/artists/${artist.name}`}
-          image={artist.images[0].url}
           key={artist.id}
-          subtitle={artist.genres.map((genre, index) => (
-            <span key={genre}>
-              <span className="hover:underline">
-                <Link href={`/genres/${genre}`}>{genre}</Link>
-              </span>
-
-              {index < artist.genres.length - 1 && <span>{",\u00A0"}</span>}
-            </span>
-          ))}
-          title={artist.name}
+          titles={{
+            title: artist.name,
+            hrefTitle: `/artists/${artist.name}?id=${artist.id}`,
+            subtitle: <Subtitles items={artist.genres} baseUrl="/genres" />,
+          }}
+          urls={{
+            imageUrl: artist.images[0]?.url,
+            spotifyUrl: artist.external_urls.spotify,
+          }}
         />
       ))}
     </div>

@@ -53,6 +53,39 @@ export const userApi = createApi({
       }),
       providesTags: () => ["User"],
     }),
+    getRecommandations: builder.query<
+      SpotifyApi.RecommendationsFromSeedsResponse,
+      SpotifyApi.RecommendationsOptionsObject
+    >({
+      query: ({ seed_artists, seed_genres, seed_tracks, limit }) => ({
+        url: `/recommendations`,
+        method: "GET",
+        credentials: "same-origin",
+        params: {
+          seed_artists,
+          seed_genres,
+          seed_tracks,
+          limit,
+        },
+      }),
+      providesTags: () => ["User"],
+    }),
+    getFollowedArtists: builder.query<
+      SpotifyApi.UsersFollowedArtistsResponse,
+      { limit?: number; after?: string }
+    >({
+      query: ({ limit, after }) => ({
+        url: `/me/following`,
+        method: "GET",
+        credentials: "same-origin",
+        params: {
+          type: "artist",
+          limit,
+          after,
+        },
+      }),
+      providesTags: () => ["User"],
+    }),
   }),
 });
 
@@ -60,4 +93,6 @@ export const {
   useGetUserQuery,
   useGetUserTopQuery,
   useGetRecentlyPlayedQuery,
+  useGetRecommandationsQuery,
+  useGetFollowedArtistsQuery,
 } = userApi;

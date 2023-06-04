@@ -13,6 +13,7 @@ export const albumLastfmApi = createApi({
         method: "GET",
         credentials: "same-origin",
       }),
+
       providesTags: () => ["Album"],
     }),
     getSimilarAlbums: builder.query({

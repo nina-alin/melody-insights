@@ -7,10 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 import Error from "@/components/common/states/error";
 import Loading from "@/components/common/states/loading";
 import SectionTitle from "@/components/common/template/section-title";
-import ArtistOrTrack from "@/components/dashboard/artist-or-track";
+import ArtistOrTrack from "@/components/common/template/artist-or-track";
 import useSplitIntoTwoColumns from "@/hooks/use-split-columns";
 import { useGetUserTopQuery } from "@/pages/api/user.api";
 import { RootState } from "@/store";
+import Subtitles from "../common/template/subtitles";
 
 const TopArtists = () => {
   const range = useSelector((state: RootState) => state.globalState.range);
@@ -49,22 +50,20 @@ const TopArtists = () => {
           <div className="flex w-full flex-col gap-5" key={uuidv4()}>
             {column.map((artist) => (
               <ArtistOrTrack
-                hrefTitle={`/artists/${artist.name}`}
-                image={artist.images[0].url}
-                key={artist.id}
-                subtitle={artist.genres.map((genre, index) => (
-                  <span key={genre}>
-                    <span className="hover:underline">
-                      <Link href={`/genres/${genre}`}>{genre}</Link>
-                    </span>
+                titles={{
+                  title: artist.name,
+                  subtitle: (
+                    <Subtitles baseUrl="/genres" items={artist.genres} />
+                  ),
 
-                    {index < artist.genres.length - 1 && (
-                      <span>{",\u00A0"}</span>
-                    )}
-                  </span>
-                ))}
-                title={artist.name}
+                  hrefTitle: `/artists/${artist.name}?id=${artist.id}`,
+                }}
+                urls={{
+                  imageUrl: artist.images[0]?.url,
+                  spotifyUrl: artist.external_urls.spotify,
+                }}
                 popularity={artist.popularity}
+                key={artist.id}
               />
             ))}
           </div>

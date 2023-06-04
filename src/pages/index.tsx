@@ -8,13 +8,13 @@ import React from "react";
 const Home: NextPage = () => (
   <>
     <Head>
-      <title>Spotify Enhanced</title>
+      <title>Melody Insights</title>
     </Head>
     <div className="flex min-h-screen flex-1 flex-col items-center justify-center gap-10 px-20  py-2 text-center">
       <div>
         <h1 className="text-6xl font-bold text-white">
           Welcome to{" "}
-          <span className="text-spotify-primary">Spotify Enhanced ✨</span>
+          <span className="text-spotify-primary">Melody Insights ✨</span>
         </h1>
 
         <p className="mt-3 text-2xl text-white">

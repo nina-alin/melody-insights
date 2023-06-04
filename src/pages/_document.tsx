@@ -7,16 +7,16 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Spotify Enhanced is a web app that provides you with insights about your Spotify account."
+          content="Melody Insights is a web app that provides you with insights about your Spotify account."
         />
-        <meta property="og:title" content="Spotify Enhanced" />
+        <meta property="og:title" content="Melody Insights" />
         <meta
           property="og:description"
-          content="Spotify Enhanced is a web app that provides you with insights about your Spotify account."
+          content="Melody Insights is a web app that provides you with insights about your Spotify account."
         />
         <link
           rel="canonical"
-          href="https://spotify-enhanced.vercel.app/dashboard/"
+          href="https://melody-insights.vercel.app/dashboard/"
         />
       </Head>
       <body>

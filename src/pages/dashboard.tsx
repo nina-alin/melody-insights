@@ -3,14 +3,14 @@ import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 
-import MostPopularArtists from "@/components/dashboard/most-popular-artists";
 import RecentlyPlayed from "@/components/dashboard/recently-played";
 import TopArtists from "@/components/dashboard/top-artists";
 import TopGenres from "@/components/dashboard/top-genres";
 import TrackCarousel from "@/components/dashboard/track-carousel";
+import PopularityArtists from "@/components/dashboard/popularity-artists";
+
 import "swiper/css";
 import "swiper/css/navigation";
-import PopularityArtists from "@/components/dashboard/popularity-artists";
 
 const Dashboard: NextPage = () => {
   return (
@@ -19,7 +19,7 @@ const Dashboard: NextPage = () => {
         <title>Dashboard</title>
         <meta
           name="description"
-          content="Spotify Enhanced is a web app that provides you with insights about your Spotify account. This is the dashboard page."
+          content="Melody Insights is a web app that provides you with insights about your Spotify account. This is the dashboard page."
           key="desc"
         />
       </Head>

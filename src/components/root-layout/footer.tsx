@@ -33,17 +33,21 @@ const Footer = () => {
       </ul>
 
       <p className="flex justify-center">
-        © {new Date().getFullYear()}, Spotify Enhanced. All rights reserved.
+        © {new Date().getFullYear()}, Melody Insights. All rights reserved.
       </p>
 
       <div className="flex items-center justify-end gap-5">
-        <Link href="https://github.com/nina-alin" aria-label={"github"}>
-          <GithubIcon />
-        </Link>
+        <address>
+          <Link href="https://github.com/nina-alin" aria-label={"github"}>
+            <GithubIcon />
+          </Link>
+        </address>
 
-        <Link href="https://twitter.com/karmirariel" aria-label={"twitter"}>
-          <TwitterIcon />
-        </Link>
+        <address>
+          <Link href="https://twitter.com/karmirariel" aria-label={"twitter"}>
+            <TwitterIcon />
+          </Link>
+        </address>
       </div>
     </footer>
   );

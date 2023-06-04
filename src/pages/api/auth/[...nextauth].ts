@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
       authorization: {
         params: {
-          scope: "user-top-read user-read-recently-played",
+          scope: "user-top-read user-read-recently-played user-follow-read",
         },
       },
     }),

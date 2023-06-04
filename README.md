@@ -1,6 +1,6 @@
-# Spotify Enhanced ✨
+# Melody Insights ✨
 
-Spotify Enhanced is an application for discovering artists, albums, music genres, and songs. The application utilizes Spotify authentication to retrieve a user's favorite artists, songs, and music genres. It provides rich, detailed pages for each song, artist, album, and genre, filled with relevant suggestions and data.
+Melody Insights is an application for discovering artists, albums, music genres, and songs. The application utilizes Spotify authentication to retrieve a user's favorite artists, songs, and music genres. It provides rich, detailed pages for each song, artist, album, and genre, filled with relevant suggestions and data.
 
 ## Features
 
@@ -30,7 +30,7 @@ To get a local copy up and running, follow these steps:
 Clone the repository:
 
 ```bash
-git clone https://github.com/nina-alin/spotify-enhanced.git
+git clone https://github.com/nina-alin/melody-insights
 ```
 
 Install NPM packages:
@@ -60,4 +60,4 @@ Contributions are welcome! For major changes, please open an issue first to disc
 ## Contact
 
 - Nina Alin - alin.nina28@gmail.com
-- Project Link: https://github.com/nina-alin/spotify-enhanced.git
+- Project Link: https://github.com/nina-alin/melody-insights

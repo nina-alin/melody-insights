@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { Autoplay, Grid, Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import ArrowIcon from "@/components/common/icons/arrow-icon";
@@ -95,7 +95,7 @@ const TrackCarousel = () => {
               slidesPerView: 8,
             },
           }}
-          modules={[Autoplay, Grid, Navigation]}
+          modules={[Autoplay, Navigation]}
           navigation={{ nextEl: "#swiper-forward", prevEl: "#swiper-back" }}
           slidesPerView={3}
         >

@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { Nunito } from "next/font/google";
+import { Noto_Sans_JP, Nunito } from "next/font/google";
 import { Session } from "next-auth";
 import { SessionProvider, getSession, GetSessionParams } from "next-auth/react";
 import { Provider } from "react-redux";
@@ -8,12 +8,20 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "@/store";
 import "./globals.css";
 import RootLayout from "@/components/root-layout/root-layout";
-import { useGetUserQuery } from "@/pages/api/user.api";
-import Loading from "@/components/common/states/loading";
+
+const notoSansJP = Noto_Sans_JP({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--noto-sans-jp-variable",
+});
 
 const nunito = Nunito({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic", "cyrillic-ext", "vietnamese"],
+  fallback: ["--noto-sans-jp-variable", "sans-serif"],
+  display: "swap",
+  variable: "--nunito-variable",
 });
 
 export default function App({
@@ -25,14 +33,14 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <div className={nunito.className}>
-            <div className="flex flex-col">
-              <RootLayout>
-                <main className="top-20 min-h-full flex-1 bg-spotify-background text-white">
-                  <Component {...pageProps} />
-                </main>
-              </RootLayout>
-            </div>
+          <div
+            className={`flex flex-col ${nunito.variable} ${notoSansJP.variable} font-sans`}
+          >
+            <RootLayout>
+              <main className="top-20 min-h-full flex-1 bg-spotify-background text-white focus:outline-offset-1 focus:outline-spotify-primary">
+                <Component {...pageProps} />
+              </main>
+            </RootLayout>
           </div>
         </PersistGate>
       </Provider>

@@ -8,8 +8,13 @@ module.exports = {
   plugins: [require("flowbite/plugin")],
   theme: {
     fontFamily: {
-      sans: ["Nunito", "sans-serif"],
+      sans: [
+        "var(--nunito-variable)",
+        "var(--noto-sans-jp-variable)",
+        "var(--noto-sans-kr-variable)",
+      ],
     },
+
     colors: {
       spotify: {
         background: "#121212",
