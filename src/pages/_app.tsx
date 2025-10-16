@@ -33,14 +33,14 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <div
-            className={`flex flex-col ${nunito.variable} ${notoSansJP.variable} font-sans`}
-          >
-            <RootLayout>
-              <main className="top-20 min-h-full flex-1 bg-spotify-background text-white focus:outline-offset-1 focus:outline-spotify-primary">
-                <Component {...pageProps} />
-              </main>
-            </RootLayout>
+          <div className={`${nunito.className} ${notoSansJP.className}`}>
+            <div className="flex flex-col">
+              <RootLayout>
+                <main className="top-20 min-h-full flex-1 bg-spotify-background text-white focus:outline-offset-1 focus:outline-spotify-primary">
+                  <Component {...pageProps} />
+                </main>
+              </RootLayout>
+            </div>
           </div>
         </PersistGate>
       </Provider>

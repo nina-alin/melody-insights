@@ -6,10 +6,12 @@ import SectionTitle from "../common/template/section-title";
 import Link from "next/link";
 
 const ArtistRecommandations = ({ id }: { id: string }) => {
-  const { data, isLoading, isError } = useGetRecommandationsQuery({
+  const { data, isLoading, isError, error } = useGetRecommandationsQuery({
     seed_artists: id,
     limit: 10,
   });
+
+  console.log(error);
 
   if (isError) {
     return <NotAvailableYet />;
@@ -17,6 +19,7 @@ const ArtistRecommandations = ({ id }: { id: string }) => {
   if (isLoading || !data) {
     return <Loading />;
   }
+
   return (
     <section className="flex flex-col gap-8 self-baseline">
       <SectionTitle>Recommandations based on this artist</SectionTitle>
