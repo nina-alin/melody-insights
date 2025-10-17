@@ -64,8 +64,9 @@ const ArtistDetails: NextPage = () => {
         <div className="flex flex-wrap items-center justify-between gap-8 lg:grid lg:grid-cols-3">
           <ArtistTopTracks id={id} />
           <ArtistAlbum id={id} />
-          <ArtistRecommandations id={id} />
-          <ArtistsRelated id={id} />
+          {/* thank you Spotify for removing those APIs :) */}
+          {/*<ArtistRecommandations id={id} />*/}
+          {/*<ArtistsRelated id={id} />*/}
         </div>
       </div>
     </>
